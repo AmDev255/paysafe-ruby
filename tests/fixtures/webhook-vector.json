@@ -1,0 +1,32 @@
+{
+  "secret": "paysafe_webhook_test_2f4c9b7e1a3d5f6c8e0b2a4d6f8c1e3b",
+  "timestamp": 1788775204,
+  "body": "{\"id\":\"evt_01J7A9R5VKM4N5P6R7S8T9V0B6\",\"object\":\"event\",\"type\":\"payment.succeeded\",\"api_version\":\"2026-09-01\",\"livemode\":false,\"created_at\":\"2026-09-07T10:00:04Z\",\"data\":{\"object\":{\"id\":\"pay_01J7A9Q0K3M4N5P6R7S8T9V0W1\",\"object\":\"payment\",\"status\":\"succeeded\",\"amount\":10000,\"currency\":\"TZS\"}},\"request\":{\"id\":\"req_01J7A9QX2KM4N5P6R7S8T9V0E9\",\"idempotency_key\":\"order-8812-attempt-1\"}}",
+  "signature": "250d2673fee3d9c3398fe15a37c9bcb230d87f80c5441e5b83fd43c7f2d7995b",
+  "header": "t=1788775204,v1=250d2673fee3d9c3398fe15a37c9bcb230d87f80c5441e5b83fd43c7f2d7995b",
+  "legacy": {
+    "secret": "whsec_test_2f4c9b7e1a3d5f6c8e0b2a4d6f8c1e3b",
+    "signature": "880ac7fb8a4bb2ddbd615706ebabde6dbd040552d546b830c5a696e7b23b3d08",
+    "note": "Signature printed on the docs page before the S12 fix; computed with the un-branded secret."
+  },
+  "rotation": {
+    "header": "t=1788775204,v1=0000000000000000000000000000000000000000000000000000000000000000,v1=250d2673fee3d9c3398fe15a37c9bcb230d87f80c5441e5b83fd43c7f2d7995b",
+    "note": "Second v1 is the valid one."
+  },
+  "secondSecret": {
+    "secret": "paysafe_webhook_test_0000000000000000000000000000000f",
+    "signature": "6eba3bca2ae7a5e5a3b9748b47d1e959c26a94cd20df74c8fe1e338e073d40ae"
+  },
+  "tolerance": 300,
+  "nowValid": 1788775214,
+  "nowExpired": 1788775505,
+  "nowFuture": 1788774903,
+  "tamperedBody": "{\"id\":\"evt_01J7A9R5VKM4N5P6R7S8T9V0B6\",\"object\":\"event\",\"type\":\"payment.succeeded\",\"api_version\":\"2026-09-01\",\"livemode\":false,\"created_at\":\"2026-09-07T10:00:04Z\",\"data\":{\"object\":{\"id\":\"pay_01J7A9Q0K3M4N5P6R7S8T9V0W1\",\"object\":\"payment\",\"status\":\"succeeded\",\"amount\":10001,\"currency\":\"TZS\"}},\"request\":{\"id\":\"req_01J7A9QX2KM4N5P6R7S8T9V0E9\",\"idempotency_key\":\"order-8812-attempt-1\"}}",
+  "headers": {
+    "PaySafe-Event-Id": "evt_01J7A9R5VKM4N5P6R7S8T9V0B6",
+    "PaySafe-Delivery-Id": "whd_01J7A9R5VKM4N5P6R7S8T9V0C7",
+    "PaySafe-Attempt": "1",
+    "Content-Type": "application/json",
+    "User-Agent": "PaySafe-Webhooks/1.0"
+  }
+}

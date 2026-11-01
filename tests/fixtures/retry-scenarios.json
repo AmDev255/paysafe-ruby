@@ -1,0 +1,264 @@
+{
+  "defaults": {
+    "maxAttempts": 5,
+    "initialBackoffMs": 500,
+    "maxBackoffMs": 8000,
+    "multiplier": 2,
+    "jitter": "full",
+    "timeoutMs": 30000,
+    "inProgressSleepMs": 1000
+  },
+  "scenarios": [
+    {
+      "name": "429 then 200 honours Retry-After",
+      "request": "getBalance",
+      "sequence": [
+        {
+          "status": 429,
+          "code": "rate_limited",
+          "headers": {
+            "Retry-After": "1"
+          }
+        },
+        {
+          "status": 200
+        }
+      ],
+      "expect": {
+        "attempts": 2,
+        "sleptAtLeastMs": 1000,
+        "result": "success"
+      }
+    },
+    {
+      "name": "503 then 200",
+      "request": "getBalance",
+      "sequence": [
+        {
+          "status": 503,
+          "code": "service_unavailable",
+          "headers": {
+            "Retry-After": "1"
+          }
+        },
+        {
+          "status": 200
+        }
+      ],
+      "expect": {
+        "attempts": 2,
+        "result": "success"
+      }
+    },
+    {
+      "name": "409 idempotency_in_progress then 202 keeps the same key",
+      "request": "createPayment",
+      "sequence": [
+        {
+          "status": 409,
+          "code": "idempotency_in_progress"
+        },
+        {
+          "status": 202
+        }
+      ],
+      "expect": {
+        "attempts": 2,
+        "sameIdempotencyKey": true,
+        "result": "success"
+      }
+    },
+    {
+      "name": "409 idempotency_conflict is not retried",
+      "request": "createPayment",
+      "sequence": [
+        {
+          "status": 409,
+          "code": "idempotency_conflict"
+        }
+      ],
+      "expect": {
+        "attempts": 1,
+        "error": "IdempotencyConflictError"
+      }
+    },
+    {
+      "name": "400 is not retried",
+      "request": "createPayment",
+      "sequence": [
+        {
+          "status": 400,
+          "code": "validation_error"
+        }
+      ],
+      "expect": {
+        "attempts": 1,
+        "error": "ValidationError"
+      }
+    },
+    {
+      "name": "network error on GET is retried",
+      "request": "getPayment",
+      "sequence": [
+        {
+          "networkError": true
+        },
+        {
+          "status": 200
+        }
+      ],
+      "expect": {
+        "attempts": 2,
+        "result": "success"
+      }
+    },
+    {
+      "name": "network error on keyed POST is retried with the same key",
+      "request": "createRefund",
+      "sequence": [
+        {
+          "networkError": true
+        },
+        {
+          "status": 202
+        }
+      ],
+      "expect": {
+        "attempts": 2,
+        "sameIdempotencyKey": true,
+        "result": "success"
+      }
+    },
+    {
+      "name": "network error on unkeyed POST is not retried",
+      "request": "createWebhookEndpoint",
+      "sequence": [
+        {
+          "networkError": true
+        }
+      ],
+      "expect": {
+        "attempts": 1,
+        "error": "ApiConnectionError"
+      }
+    },
+    {
+      "name": "500 on keyed POST retried up to max attempts",
+      "request": "createPayment",
+      "sequence": [
+        {
+          "status": 500
+        },
+        {
+          "status": 500
+        },
+        {
+          "status": 500
+        },
+        {
+          "status": 500
+        },
+        {
+          "status": 500
+        }
+      ],
+      "expect": {
+        "attempts": 5,
+        "error": "InternalError"
+      }
+    },
+    {
+      "name": "502 provider_error on createPayment is not retried",
+      "request": "createPayment",
+      "sequence": [
+        {
+          "status": 502,
+          "code": "provider_error"
+        }
+      ],
+      "expect": {
+        "attempts": 1,
+        "error": "ProviderError"
+      }
+    },
+    {
+      "name": "timeout then success",
+      "request": "listPayments",
+      "sequence": [
+        {
+          "timeout": true
+        },
+        {
+          "status": 200
+        }
+      ],
+      "expect": {
+        "attempts": 2,
+        "result": "success"
+      }
+    },
+    {
+      "name": "Idempotent-Replayed header surfaces",
+      "request": "createPayment",
+      "sequence": [
+        {
+          "status": 202,
+          "headers": {
+            "Idempotent-Replayed": "true"
+          }
+        }
+      ],
+      "expect": {
+        "attempts": 1,
+        "idempotentReplayed": true
+      }
+    },
+    {
+      "name": "unknown error code maps by status",
+      "request": "getBalance",
+      "sequence": [
+        {
+          "status": 418,
+          "code": "teapot_error"
+        }
+      ],
+      "expect": {
+        "attempts": 1,
+        "error": "ApiError",
+        "code": "teapot_error"
+      }
+    },
+    {
+      "name": "non-JSON error body",
+      "request": "getBalance",
+      "sequence": [
+        {
+          "status": 400,
+          "rawBody": "<html>Bad request</html>"
+        }
+      ],
+      "expect": {
+        "attempts": 1,
+        "error": "ApiError",
+        "code": "unknown"
+      }
+    },
+    {
+      "name": "non-JSON 502 from a proxy is retried on GET",
+      "request": "getBalance",
+      "sequence": [
+        {
+          "status": 502,
+          "rawBody": "<html>Bad gateway</html>"
+        },
+        {
+          "status": 200
+        }
+      ],
+      "expect": {
+        "attempts": 2,
+        "result": "success"
+      }
+    }
+  ]
+}

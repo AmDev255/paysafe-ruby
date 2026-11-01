@@ -1,0 +1,214 @@
+{
+  "operationId": "listControlNumbers",
+  "method": "GET",
+  "path": "/v1/control-numbers",
+  "resolvedPath": "/v1/control-numbers",
+  "pathParams": {},
+  "query": {
+    "limit": 25,
+    "cursor": "eyJpZCI6InBheV8wMUo3QTlRMEszIn0",
+    "status": "active",
+    "state": "unpaid",
+    "batch": "batch value",
+    "customer": "customer value",
+    "q": "q value"
+  },
+  "headers": {
+    "Authorization": "Bearer paysafe_test_9f2Kx7Qm3Rt8Vw2Yz5Ab1Cd4Ef6Gh9Jk"
+  },
+  "body": null,
+  "minimalBody": null,
+  "bodyRequired": false,
+  "responses": {
+    "200": {
+      "headers": {
+        "X-Request-ID": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+        "X-RateLimit-Limit": "50",
+        "X-RateLimit-Remaining": "49",
+        "X-RateLimit-Reset": "1788775205"
+      },
+      "body": {
+        "object": "list",
+        "data": [
+          {
+            "id": "obj_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+            "object": "control_number",
+            "number": "991234567890",
+            "formatted": "formatted value",
+            "batch": "batch value",
+            "customer": "customer value",
+            "payer": {
+              "name": "name value",
+              "phone": "+255712340000",
+              "email": "amina@example.com",
+              "reference": "reference value"
+            },
+            "title": "title value",
+            "description": "description value",
+            "reference": "reference value",
+            "payment_type": "payment_type value",
+            "mode": "full",
+            "amount": 10000,
+            "paid_amount": 0,
+            "balance": 0,
+            "progress_percent": 0,
+            "currency": "TZS",
+            "payment_count": 0,
+            "status": "active",
+            "payment_status": "unpaid",
+            "notes": "notes value",
+            "metadata": {
+              "order_id": "8812"
+            },
+            "issued_at": "2026-09-07T10:00:04Z",
+            "expires_at": "2026-09-07T10:00:04Z",
+            "paid_at": "2026-09-07T10:00:04Z",
+            "last_paid_at": "2026-09-07T10:00:04Z",
+            "cancelled_at": "2026-09-07T10:00:04Z",
+            "cancel_reason": "cancel_reason value",
+            "pay_url": "https://merchant.example/paysafe/webhook",
+            "livemode": false,
+            "image": "image value",
+            "image_url": "https://merchant.example/paysafe/webhook",
+            "created_at": "2026-09-07T10:00:04Z"
+          }
+        ],
+        "has_more": false,
+        "next_cursor": "eyJpZCI6InBheV8wMUo3QTlRMEszIn0"
+      },
+      "schema": "ControlNumberList"
+    },
+    "400": {
+      "headers": {
+        "X-Request-ID": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1"
+      },
+      "body": {
+        "error": {
+          "code": "validation_error",
+          "message": "validation_error example",
+          "request_id": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+          "doc_url": "https://paysafe.co.tz/docs/errors#validation_error",
+          "param": "amount",
+          "details": {
+            "in": "body",
+            "issues": [
+              {
+                "path": "amount",
+                "message": "Required",
+                "code": "invalid_type"
+              }
+            ]
+          }
+        }
+      },
+      "code": "validation_error"
+    },
+    "401": {
+      "headers": {
+        "X-Request-ID": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+        "WWW-Authenticate": "Bearer realm=\"paysafe\""
+      },
+      "body": {
+        "error": {
+          "code": "authentication_error",
+          "message": "authentication_error example",
+          "request_id": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+          "doc_url": "https://paysafe.co.tz/docs/errors#authentication_error"
+        }
+      },
+      "code": "authentication_error"
+    },
+    "403": {
+      "headers": {
+        "X-Request-ID": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1"
+      },
+      "body": {
+        "error": {
+          "code": "permission_error",
+          "message": "permission_error example",
+          "request_id": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+          "doc_url": "https://paysafe.co.tz/docs/errors#permission_error",
+          "details": {
+            "scope": "payments:write"
+          }
+        }
+      },
+      "code": "permission_error"
+    },
+    "404": {
+      "headers": {
+        "X-Request-ID": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1"
+      },
+      "body": {
+        "error": {
+          "code": "not_found",
+          "message": "not_found example",
+          "request_id": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+          "doc_url": "https://paysafe.co.tz/docs/errors#not_found"
+        }
+      },
+      "code": "not_found"
+    },
+    "409": {
+      "headers": {
+        "X-Request-ID": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1"
+      },
+      "body": {
+        "error": {
+          "code": "idempotency_conflict",
+          "message": "idempotency_conflict example",
+          "request_id": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+          "doc_url": "https://paysafe.co.tz/docs/errors#idempotency_conflict"
+        }
+      },
+      "code": "idempotency_conflict"
+    },
+    "429": {
+      "headers": {
+        "X-Request-ID": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+        "Retry-After": "2"
+      },
+      "body": {
+        "error": {
+          "code": "rate_limited",
+          "message": "rate_limited example",
+          "request_id": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+          "doc_url": "https://paysafe.co.tz/docs/errors#rate_limited",
+          "details": {
+            "scope": "api:key"
+          }
+        }
+      },
+      "code": "rate_limited"
+    },
+    "503": {
+      "headers": {
+        "X-Request-ID": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+        "Retry-After": "2"
+      },
+      "body": {
+        "error": {
+          "code": "service_unavailable",
+          "message": "service_unavailable example",
+          "request_id": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+          "doc_url": "https://paysafe.co.tz/docs/errors#service_unavailable"
+        }
+      },
+      "code": "service_unavailable"
+    },
+    "409_in_progress": {
+      "headers": {
+        "X-Request-ID": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1"
+      },
+      "body": {
+        "error": {
+          "code": "idempotency_in_progress",
+          "message": "idempotency_in_progress example",
+          "request_id": "req_01J7A9Q0K3M4N5P6R7S8T9V0W1",
+          "doc_url": "https://paysafe.co.tz/docs/errors#idempotency_in_progress"
+        }
+      },
+      "code": "idempotency_in_progress"
+    }
+  }
+}

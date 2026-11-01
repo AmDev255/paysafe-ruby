@@ -1,0 +1,38 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1
+  SuggestExtensions: false
+  Exclude:
+    - "vendor/**/*"
+    - "pkg/**/*"
+
+Layout/LineLength:
+  Max: 150
+
+Metrics:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Naming/MethodParameterName:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Naming/PredicateName:
+  Enabled: false
+
+Naming/PredicatePrefix:
+  Enabled: false
+
+Lint/ConstantDefinitionInBlock:
+  Exclude:
+    - "spec/**/*"

@@ -1,0 +1,179 @@
+{
+  "version": "2026-09-07",
+  "operations": [
+    {
+      "operationId": "createPayment",
+      "method": "POST",
+      "path": "/v1/payments",
+      "file": "createPayment.json"
+    },
+    {
+      "operationId": "listPayments",
+      "method": "GET",
+      "path": "/v1/payments",
+      "file": "listPayments.json"
+    },
+    {
+      "operationId": "getPayment",
+      "method": "GET",
+      "path": "/v1/payments/{id}",
+      "file": "getPayment.json"
+    },
+    {
+      "operationId": "cancelPayment",
+      "method": "POST",
+      "path": "/v1/payments/{id}/cancel",
+      "file": "cancelPayment.json"
+    },
+    {
+      "operationId": "createPaymentLink",
+      "method": "POST",
+      "path": "/v1/payment-links",
+      "file": "createPaymentLink.json"
+    },
+    {
+      "operationId": "listPaymentLinks",
+      "method": "GET",
+      "path": "/v1/payment-links",
+      "file": "listPaymentLinks.json"
+    },
+    {
+      "operationId": "getPaymentLink",
+      "method": "GET",
+      "path": "/v1/payment-links/{id}",
+      "file": "getPaymentLink.json"
+    },
+    {
+      "operationId": "updatePaymentLink",
+      "method": "PATCH",
+      "path": "/v1/payment-links/{id}",
+      "file": "updatePaymentLink.json"
+    },
+    {
+      "operationId": "createControlNumber",
+      "method": "POST",
+      "path": "/v1/control-numbers",
+      "file": "createControlNumber.json"
+    },
+    {
+      "operationId": "listControlNumbers",
+      "method": "GET",
+      "path": "/v1/control-numbers",
+      "file": "listControlNumbers.json"
+    },
+    {
+      "operationId": "getControlNumber",
+      "method": "GET",
+      "path": "/v1/control-numbers/{id}",
+      "file": "getControlNumber.json"
+    },
+    {
+      "operationId": "cancelControlNumber",
+      "method": "POST",
+      "path": "/v1/control-numbers/{id}/cancel",
+      "file": "cancelControlNumber.json"
+    },
+    {
+      "operationId": "createRefund",
+      "method": "POST",
+      "path": "/v1/refunds",
+      "file": "createRefund.json"
+    },
+    {
+      "operationId": "listRefunds",
+      "method": "GET",
+      "path": "/v1/refunds",
+      "file": "listRefunds.json"
+    },
+    {
+      "operationId": "getRefund",
+      "method": "GET",
+      "path": "/v1/refunds/{id}",
+      "file": "getRefund.json"
+    },
+    {
+      "operationId": "getBalance",
+      "method": "GET",
+      "path": "/v1/balance",
+      "file": "getBalance.json"
+    },
+    {
+      "operationId": "listTransactions",
+      "method": "GET",
+      "path": "/v1/transactions",
+      "file": "listTransactions.json"
+    },
+    {
+      "operationId": "listCustomers",
+      "method": "GET",
+      "path": "/v1/customers",
+      "file": "listCustomers.json"
+    },
+    {
+      "operationId": "getCustomer",
+      "method": "GET",
+      "path": "/v1/customers/{id}",
+      "file": "getCustomer.json"
+    },
+    {
+      "operationId": "createTransfer",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "file": "createTransfer.json"
+    },
+    {
+      "operationId": "listTransfers",
+      "method": "GET",
+      "path": "/v1/transfers",
+      "file": "listTransfers.json"
+    },
+    {
+      "operationId": "getTransfer",
+      "method": "GET",
+      "path": "/v1/transfers/{id}",
+      "file": "getTransfer.json"
+    },
+    {
+      "operationId": "listWebhookEndpoints",
+      "method": "GET",
+      "path": "/v1/webhook-endpoints",
+      "file": "listWebhookEndpoints.json"
+    },
+    {
+      "operationId": "createWebhookEndpoint",
+      "method": "POST",
+      "path": "/v1/webhook-endpoints",
+      "file": "createWebhookEndpoint.json"
+    },
+    {
+      "operationId": "getWebhookEndpoint",
+      "method": "GET",
+      "path": "/v1/webhook-endpoints/{id}",
+      "file": "getWebhookEndpoint.json"
+    },
+    {
+      "operationId": "updateWebhookEndpoint",
+      "method": "PATCH",
+      "path": "/v1/webhook-endpoints/{id}",
+      "file": "updateWebhookEndpoint.json"
+    },
+    {
+      "operationId": "deleteWebhookEndpoint",
+      "method": "DELETE",
+      "path": "/v1/webhook-endpoints/{id}",
+      "file": "deleteWebhookEndpoint.json"
+    },
+    {
+      "operationId": "listEvents",
+      "method": "GET",
+      "path": "/v1/events",
+      "file": "listEvents.json"
+    },
+    {
+      "operationId": "getEvent",
+      "method": "GET",
+      "path": "/v1/events/{id}",
+      "file": "getEvent.json"
+    }
+  ]
+}
